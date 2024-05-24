@@ -61,7 +61,7 @@ def main():
                 elif user_menu_choice == "3":
                     library.display_all_users()
                 elif user_menu_choice == "4":
-                    break
+                    return
                 else:
                     print("Please enter a valid choice")
         except Exception as e:
@@ -81,7 +81,7 @@ def main():
                 elif author_menu_choice == "3":
                     library.display_all_authors()
                 elif author_menu_choice == "4":
-                    break
+                    return
                 else:
                     print("Please enter a valid choice")
         except Exception as e:
@@ -101,7 +101,7 @@ def main():
                 elif genre_menu_choice == "3":
                     library.display_all_genres()
                 elif genre_menu_choice == "4":
-                    break
+                    return
                 else:
                     print("Please enter a valid choice")
         except Exception as e:

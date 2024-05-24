@@ -24,13 +24,13 @@ class Library:
         title = input("Enter book title: ").title()
         author = input("Enter book author: ").title()
         isbn = input("Enter ISBN: ")
-        publication_date = input("Enter the publication date (EX: Year-Month-Date): ")
+        publication_date = input("Enter the publication date (EX: yyyy-mm-dd): ")
         genre_name = input("Enter book's genre: ")
         genre_description = input("Enter the genre's description: ")
         genre = Genre(genre_name, genre_description)
         new_book = Book(title, author, isbn, publication_date, genre)
         self.books.append(new_book)
-        print(f"Book: {title} added successfully!")
+        print(f"Book: {title} by {author} was added successfully!")
      
         
     def checkout_book(self):
@@ -38,8 +38,8 @@ class Library:
         user = self.find_user(library_id)
         if user is None:
             print("User Not Found.\nYou are being routed to create a library user account..")
-            
-        
+            return
+
         isbn = input("Enter the ISBN of the book to check out: ")
         book_found = False
         for book in self.books:
@@ -98,8 +98,8 @@ class Library:
 # User Operations:
 # 1. Add a new user
 # 2. View user details
-# 3. Display all users        
-        
+# 3. Display all users   
+     
     def add_user(self):
         name = input("Enter the user's name: ")
         library_id = "ID" + str(len(self.users) + 1).zfill(5)
@@ -111,9 +111,10 @@ class Library:
     
     def find_user(self, library_id):
         for user in self.users:
-            if user.get_library_id == library_id:
+            if user.get_library_id() == library_id:
                 return user
         return None
+    
     
     def view_user_details(self):
         library_id = input("Enter the user's library ID: ")
@@ -144,11 +145,13 @@ class Library:
     
     def view_author_details(self):
         author_name = input("Enter the author's name: ")
-        author = self.find_user(author_name)
-        if author:
-            print(author)
+        for author in self.authors:
+            if author.name() == author_name:
+                print(f"Name: {author.name()}")
+                print(f"Biography: {author.biography()}")
+                return
         else:
-            print("Author not found.")
+            print("Author not found.")    
             
     def display_all_authors(self):         
         if not self.authors:
@@ -163,11 +166,11 @@ class Library:
 # 3. Display all genres
 
     def add_genre(self):
-        genre = input("Enter the genre name: ")
+        genre_name = input("Enter the genre name: ")
         description = input("Enter a description for the genre entered (optional): ")
-        new_genre = Genre(genre, description)
-        self.genre.append(new_genre)
-        print(f"You successfully added {genre} to the list of genres.")
+        new_genre = Genre(genre_name, description)
+        self.genres.append(new_genre)  # Correctly appending to self.genres
+        print(f"You successfully added {genre_name} to the list of genres.")
         return new_genre
     
     def view_genre_details(self):
