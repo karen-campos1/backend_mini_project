@@ -136,7 +136,7 @@ class Library:
 # 3. Display all authors
 
     def add_author(self):
-        name = input("Enter the author's name: ")
+        name = input("Enter the author's name: ").title()
         biography = input("Enter some information about the author (optional): ")
         new_author = Author(name, biography)
         self.authors.append(new_author)
@@ -144,7 +144,7 @@ class Library:
         return new_author
     
     def view_author_details(self):
-        author_name = input("Enter the author's name: ")
+        author_name = input("Enter the author's name: ").title()
         for author in self.authors:
             if author.name() == author_name:
                 print(f"Name: {author.name()}")
@@ -156,8 +156,9 @@ class Library:
     def display_all_authors(self):         
         if not self.authors:
             print("Author not found.")
-        for book in self.authors:
-            print(self.authors)
+        else:
+            for author in self.authors:
+                print(self.authors)
   
             
 # Genre Operations:
@@ -166,7 +167,7 @@ class Library:
 # 3. Display all genres
 
     def add_genre(self):
-        genre_name = input("Enter the genre name: ")
+        genre_name = input("Enter the genre name: ").title()
         description = input("Enter a description for the genre entered (optional): ")
         new_genre = Genre(genre_name, description)
         self.genres.append(new_genre)  # Correctly appending to self.genres
@@ -174,15 +175,19 @@ class Library:
         return new_genre
     
     def view_genre_details(self):
-        genre_name = input("Enter the genre name: ")
-        genre = self.find_genre(genre_name)
-        if genre:
-            print(genre)
-        else:
-            print("Genre not found.")
-            
-    def display_all_genres(self):         
-        if not self.authors:
-            print("Genre not found.")
+        genre_name = input("Enter the genre name: ").title()
         for genre in self.genres:
-            print(self.genres)
+            if genre.get_name().title() == genre_name:
+                print(genre)
+            else:
+                print("Genre not found.")
+             
+    def display_all_genres(self):    
+        if not self.genres:
+            print("No genres available.")
+        else:    
+            for genre in self.genres:
+                print(genre)         
+       
+       
+       
