@@ -80,9 +80,9 @@ class Library:
         
         
     def search_books(self):
-        search = input("Enter the ISBN or title of the book: ")
+        search = input("Enter the ISBN or title of the book: ").title()
         for book in self.books:
-            if book.get_isbn() == search or book.get_title.title() == search.title():
+            if book.get_isbn() == search or book.get_title().title() == search:
                 print(book)
                 return
             print("Book not found.")                
